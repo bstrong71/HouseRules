@@ -41,11 +41,19 @@ public class GameController {
         return gameList;
     }
 
-    @DeleteMapping(path = "/api/game/{id}")
+//    @PutMapping(path = "/api/game/{id}")
+//    public Game updateGame(@PathVariable("id") int id, @RequestBody Game game) {
+//        Game game = games.findOne(id);
+//        System.out.println(game);
+//
+//        return game;
+//    }
+
+    @DeleteMapping(path = "/api/game/{id}/delete")
     public Game deleteGame(@PathVariable("id") int id) {
         Game game = games.findOne(id);
         games.delete(game);
-        System.out.println("This is game at line 48: " + game);
         return game;
     }
+
 }
