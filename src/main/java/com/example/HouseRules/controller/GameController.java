@@ -1,10 +1,14 @@
-package com.example.HouseRules.service;
+package com.example.HouseRules.controller;
 
 import com.example.HouseRules.model.Game;
 import com.example.HouseRules.repository.GameRepository;
+import com.example.HouseRules.service.GameService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,19 +16,22 @@ import java.util.List;
 public class GameController {
 
     @Autowired
-    GameRepository games;
+    private GameService gameService;
+//    GameRepository games;
 
-    @PostMapping(path = "/api")
-    public String testApi() {
-        System.out.println("hit endpoint");
-        return "working endpoint";
-    }
+    // convert JSON to Java
+    private ObjectMapper objectMapper = new ObjectMapper();
 
+    /**
+     * Add Game
+     */
     @PostMapping(path = "/api/game/new")
-    public String newGame(@RequestBody Game game) {
-        games.save(game);
+    public String addGame(@RequestBody String json) throws IOException {
+        Game game = objectMapper.readValue(json, Game.class);
+        gameService.add(game);
         return "Ok";
     }
+
 
     @GetMapping(path = "/api/game/{id}")
     public Game findOneGame(@PathVariable("id") int id) {
@@ -56,4 +63,14 @@ public class GameController {
         return game;
     }
 
+    /**
+     * Exception handler for GameController. Returns 500 error with exception message
+     */
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String handleAppException(Exception ex) {
+        System.out.println("\n\n### " + ex);
+        ex.printStackTrace();
+        return ex.getMessage();
+    }
 }
