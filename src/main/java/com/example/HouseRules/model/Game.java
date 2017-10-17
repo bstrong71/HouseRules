@@ -104,7 +104,7 @@ public class Game {
         this.image = image;
     }
 
-    @OneToMany(mappedBy = "games")
+    @OneToMany(mappedBy = "game")
     public List<Alternate> getAlternates() {
         return alternates;
     }
@@ -139,6 +139,7 @@ public class Game {
                 ", number_of_players='" + number_of_players + '\'' +
                 ", player_age_range='" + player_age_range + '\'' +
                 ", image=" + Arrays.toString(image) +
+                ", alternates=" + alternates +
                 '}';
     }
 }
