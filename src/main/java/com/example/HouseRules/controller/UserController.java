@@ -17,12 +17,12 @@ public class UserController {
     private UserService  userService;
 
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper UserobjectMapper = new ObjectMapper();
 
 
     @PostMapping(path = "/api/user/new")
     public String addUser(@RequestBody String json) throws IOException {
-        User user = objectMapper.readValue(json, User.class);
+        User user = UserobjectMapper.readValue(json, User.class);
         userService.add(user);
         return "HIT";
     }
@@ -34,7 +34,7 @@ public class UserController {
 
     @PutMapping(path = "/api/user/{id}")
     public String updateGame(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
-        User user = objectMapper.readValue(json, User.class);
+        User user = UserobjectMapper.readValue(json, User.class);
         user.setId(id);
         userService.update(user);
         return "Ok";

@@ -34,7 +34,7 @@ public class Game {
     @Column
     private byte[] image;
 
-    private List<Alternate> alternates = new ArrayList<>();
+   // private List<Alternate> alternates = new ArrayList<>();
 
 
     public Game() {
@@ -104,14 +104,14 @@ public class Game {
         this.image = image;
     }
 
-    @OneToMany(mappedBy = "games")
-    public List<Alternate> getAlternates() {
-        return alternates;
-    }
-
-    public void setAlternates(List<Alternate> alternates) {
-        this.alternates = alternates;
-    }
+//    @OneToMany(mappedBy = "games")
+//    public List<Alternate> getAlternates() {
+//        return alternates;
+//    }
+//
+//    public void setAlternates(List<Alternate> alternates) {
+//        this.alternates = alternates;
+//    }
 
     @Override
     public boolean equals(Object o) {
