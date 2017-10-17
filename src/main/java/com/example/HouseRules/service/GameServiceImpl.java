@@ -32,18 +32,15 @@ public class GameServiceImpl implements GameService {
 
     @Transactional
     @Override
-    public Game getById(int id)
-    {
+    public Game getById(int id) {
         return gameRepository.findOne(id);
     }
 
     @Transactional
     @Override
-    public List<Game> getAll()
-    {
+    public List<Game> getAll() {
         List<Game> games = new ArrayList<Game>();
-        for (Game game : gameRepository.findAll())
-        {
+        for (Game game : gameRepository.findAll()) {
             games.add(game);
         }
         return games;
@@ -51,17 +48,15 @@ public class GameServiceImpl implements GameService {
 
     @Transactional
     @Override
-    public void update(Game game)
-    {
-
+    public void update(Game game) {
+        gameRepository.save(game);
     }
 
     @Transactional
     @Override
-    public String delete(int id)
-    {
+    public String delete(int id) {
         gameRepository.delete(id);
-        return "Deleted " + id + " successfully";
+        return "Deleted game " + id + " successfully";
     }
 
 }
