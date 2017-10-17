@@ -1,7 +1,5 @@
 package com.example.HouseRules.service;
 
-import com.example.HouseRules.model.Game;
-
 import java.util.List;
 
 public interface GameService {

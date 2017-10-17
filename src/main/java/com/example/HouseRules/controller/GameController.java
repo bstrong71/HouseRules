@@ -1,6 +1,5 @@
 package com.example.HouseRules.controller;
 
-import com.example.HouseRules.model.Game;
 import com.example.HouseRules.service.GameService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
