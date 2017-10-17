@@ -28,7 +28,7 @@ public class GameController {
     public String addGame(@RequestBody String json) throws IOException {
         Game game = objectMapper.readValue(json, Game.class);
         gameService.add(game);
-        return "Ok";
+        return "New game has been added";
     }
 
     /**
@@ -39,7 +39,7 @@ public class GameController {
         Game game = objectMapper.readValue(json, Game.class);
         game.setId(id);
         gameService.update(game);
-        return "Ok";
+        return "Game " + id + " has been updated";
     }
 
     /**
@@ -64,7 +64,7 @@ public class GameController {
     @DeleteMapping(path = "/api/game/{id}/delete")
     public String deleteGame(@PathVariable("id") Integer id) {
         gameService.delete(id);
-        return "Deleted " + id + " successfully";
+        return "Deleted game " + id + " successfully";
     }
 
     /**

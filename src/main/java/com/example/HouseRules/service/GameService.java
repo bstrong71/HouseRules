@@ -1,7 +1,6 @@
 package com.example.HouseRules.service;
 
 import com.example.HouseRules.model.Game;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 

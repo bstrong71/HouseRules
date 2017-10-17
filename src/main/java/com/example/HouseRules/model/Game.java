@@ -1,7 +1,9 @@
 package com.example.HouseRules.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Table(name = "games")
@@ -31,6 +33,9 @@ public class Game {
 
     @Column
     private byte[] image;
+
+    private List<Alternate> alternates = new ArrayList<>();
+
 
     public Game() {
     }
@@ -97,6 +102,15 @@ public class Game {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    @OneToMany(mappedBy = "games")
+    public List<Alternate> getAlternates() {
+        return alternates;
+    }
+
+    public void setAlternates(List<Alternate> alternates) {
+        this.alternates = alternates;
     }
 
     @Override
