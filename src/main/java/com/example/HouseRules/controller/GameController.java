@@ -1,7 +1,6 @@
 package com.example.HouseRules.controller;
 
 import com.example.HouseRules.model.Game;
-import com.example.HouseRules.repository.GameRepository;
 import com.example.HouseRules.service.GameService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,9 +15,10 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
-//    GameRepository games;
 
-    // convert JSON to Java
+    /**
+     * Convert JSON to Java
+     */
     private ObjectMapper objectMapper = new ObjectMapper();
 
     /**
@@ -32,35 +31,40 @@ public class GameController {
         return "Ok";
     }
 
+    /**
+     * Update Game
+     */
+    @PutMapping(path = "/api/game/{id}")
+    public String updateGame(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
+        Game game = objectMapper.readValue(json, Game.class);
+        game.setId(id);
+        gameService.update(game);
+        return "Ok";
+    }
 
+    /**
+     * Get One Game
+     */
     @GetMapping(path = "/api/game/{id}")
-    public Game findOneGame(@PathVariable("id") int id) {
-        Game game = games.findOne(id);
-        System.out.println(game);
-        return game;
+    public Game getOneGame(@PathVariable("id") Integer id) {
+        return gameService.getById(id);
     }
 
+    /**
+     * Get All Games
+     */
     @GetMapping(path = "/api/games")
-    public List<Game> findAllGames() {
-        List<Game> gameList = new ArrayList<>();
-        games.findAll().forEach(game -> gameList.add(game));
-        System.out.println("Successful get to endpoint");
-        return gameList;
+    public List<Game> getAllGames() {
+        return gameService.getAll();
     }
 
-//    @PutMapping(path = "/api/game/{id}")
-//    public Game updateGame(@PathVariable("id") int id, @RequestBody Game game) {
-//        Game game = games.findOne(id);
-//        System.out.println(game);
-//
-//        return game;
-//    }
-
+    /**
+     * Delete Game
+     */
     @DeleteMapping(path = "/api/game/{id}/delete")
-    public Game deleteGame(@PathVariable("id") int id) {
-        Game game = games.findOne(id);
-        games.delete(game);
-        return game;
+    public String deleteGame(@PathVariable("id") Integer id) {
+        gameService.delete(id);
+        return "Deleted " + id + " successfully";
     }
 
     /**
