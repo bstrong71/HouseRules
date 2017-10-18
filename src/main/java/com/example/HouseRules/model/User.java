@@ -28,7 +28,14 @@ public class User {
 
     //private List<Game> games = new ArrayList<>();
 
-
+//    @OneToMany(targetEntity = Game.class, mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//
+//    public List<Game> getGames() {
+//        return games;
+//    }
+//    public void setGames(List<Game> games) {
+//        this.games = games;
+//    }
 
     public User() {
     }
@@ -37,48 +44,41 @@ public class User {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    public void setPassword(String password){
-        this.password = password;
-    }
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
-    public void setEmail(String email){
-        this.email = email;
-    }
-    public String getEmail(){
+
+    public String getEmail() {
         return email;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
-//    @OneToMany(mappedBy = "users")
-//    public List<Game> getGames() {
-//        return games;
-//    }
-//
-//    public void setGames(List<Game> games) {
-//        this.games = games;
-//    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public boolean equals(Object o) {

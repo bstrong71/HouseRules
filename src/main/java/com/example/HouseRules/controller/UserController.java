@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 @RestController
 public class UserController {
     @Autowired
@@ -57,6 +59,22 @@ public class UserController {
     public String deleteUser(@PathVariable("id") Integer id) {
         userService.delete(id);
         return "Deleted " + id ;
+    }
+
+    @GetMapping("/login")
+    String login() {
+        return "login";
+    }
+
+    @RequestMapping("/loggedout")
+    String logout(Model model) {
+
+        return "Home-Page";
+    }
+
+    @GetMapping("/admins-only")
+    String admins() {
+        return "administration";
     }
 
 

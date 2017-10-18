@@ -1,6 +1,7 @@
 package com.example.HouseRules.service;
 
 import com.example.HouseRules.repository.GameRepository;
+import com.example.HouseRules.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
