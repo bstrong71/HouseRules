@@ -6,6 +6,7 @@ import com.example.HouseRules.model.Game;
 import java.util.List;
 
 public interface GameService {
+
     Game add(Game game);
 
     void add(List<Game> allGames);
@@ -20,5 +21,6 @@ public interface GameService {
 
 
     Game addAlternate(Alternate alternate);
+
 }
 
