@@ -3,7 +3,7 @@ package com.example.HouseRules.controller;
 
 import com.example.HouseRules.model.Alternate;
 import com.example.HouseRules.model.Game;
-
+//import.com.example.HouseRules.service.AlternateService;
 import com.example.HouseRules.service.GameService;
 import com.example.HouseRules.model.Game;
 import com.fasterxml.jackson.databind.ObjectMapper;
