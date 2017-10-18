@@ -1,5 +1,9 @@
 package com.example.HouseRules.controller;
 
+
+import com.example.HouseRules.model.Alternate;
+import com.example.HouseRules.model.Game;
+
 import com.example.HouseRules.service.GameService;
 import com.example.HouseRules.model.Game;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -69,6 +73,18 @@ public class GameController {
     public String deleteGame(@PathVariable("id") Integer id) {
         gameService.delete(id);
         return "Deleted game " + id + " successfully";
+    }
+
+    /**
+     * Add Alternate Game
+     */
+    @PostMapping(path = "/api/game/{id}/alternate")
+    public String addAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
+        Alternate alternate = objectMapper.readValue(json, Alternate.class);
+        Game game = gameService.getById(id);
+        alternate.setGame(game);
+        gameService.addAlternate(alternate);
+        return "Alternate game added";
     }
 
     /**
