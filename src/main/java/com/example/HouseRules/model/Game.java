@@ -2,7 +2,6 @@ package com.example.HouseRules.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -115,20 +114,10 @@ public class Game {
     public LocalDate getDateCreated() {
         return dateCreated;
     }
-
-    public void setDateCreated(LocalDate dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
+    
     public List<Alternate> getAlternates() {
         return alternates;
     }
-
-
-
-//    public void setAlternates(List<Alternate> alternates) {
-//        this.alternates = alternates;
-//    }
 
     @Override
     public boolean equals(Object o) {

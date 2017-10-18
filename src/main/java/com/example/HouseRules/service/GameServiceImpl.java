@@ -1,13 +1,10 @@
 package com.example.HouseRules.service;
 
-<<<<<<< HEAD
-=======
+
 import com.example.HouseRules.model.Alternate;
 import com.example.HouseRules.model.Game;
 import com.example.HouseRules.repository.AlternateRepository;
->>>>>>> 0c6e7e6e332bb05bcf4741faa031a14495a6f7a4
 import com.example.HouseRules.repository.GameRepository;
-import com.example.HouseRules.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

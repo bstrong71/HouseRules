@@ -6,6 +6,7 @@ import com.example.HouseRules.model.Game;
 import java.util.List;
 
 public interface GameService {
+
     Game add(Game game);
 
     void add(List<Game> allGames);
@@ -18,9 +19,6 @@ public interface GameService {
 
     String delete(int id);
 
-<<<<<<< HEAD
-}
-=======
     Game addAlternate(Alternate alternate);
+
 }
->>>>>>> 0c6e7e6e332bb05bcf4741faa031a14495a6f7a4
