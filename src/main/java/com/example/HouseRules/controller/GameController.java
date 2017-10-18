@@ -1,8 +1,11 @@
 package com.example.HouseRules.controller;
 
+
 import com.example.HouseRules.model.Alternate;
 import com.example.HouseRules.model.Game;
+
 import com.example.HouseRules.service.GameService;
+import com.example.HouseRules.model.Game;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+
+
 @RestController
 public class GameController {
+
 
     @Autowired
     private GameService gameService;
@@ -31,6 +37,7 @@ public class GameController {
         gameService.add(game);
         return "New game has been added";
     }
+
 
     /**
      * Update Game

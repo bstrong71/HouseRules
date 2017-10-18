@@ -124,9 +124,11 @@ public class Game {
         return alternates;
     }
 
-    public void setAlternates(List<Alternate> alternates) {
-        this.alternates = alternates;
-    }
+
+
+//    public void setAlternates(List<Alternate> alternates) {
+//        this.alternates = alternates;
+//    }
 
     @Override
     public boolean equals(Object o) {
