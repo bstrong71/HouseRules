@@ -1,6 +1,8 @@
 package com.example.HouseRules.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,20 +28,25 @@ public class Game {
     private String rules;
 
     @Column
-    private String number_of_players;
+    private String numberOfPlayers;
 
     @Column
-    private String player_age_range;
+    private String playerAgeRange;
 
     @Column
     private byte[] image;
+
+    @Column
+    private LocalDate dateCreated;
 
     @OneToMany(mappedBy = "game")
     private List<Alternate> alternates = new ArrayList<>();
 
 
     public Game() {
+        this.dateCreated = LocalDate.now();
     }
+
 
     public int getId() {
         return id;
@@ -81,20 +88,20 @@ public class Game {
         this.rules = rules;
     }
 
-    public String getNumber_of_players() {
-        return number_of_players;
+    public String getNumberOfPlayers() {
+        return numberOfPlayers;
     }
 
-    public void setNumber_of_players(String number_of_players) {
-        this.number_of_players = number_of_players;
+    public void setNumberOfPlayers(String numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
     }
 
-    public String getPlayer_age_range() {
-        return player_age_range;
+    public String getPlayerAgeRange() {
+        return playerAgeRange;
     }
 
-    public void setPlayer_age_range(String player_age_range) {
-        this.player_age_range = player_age_range;
+    public void setPlayerAgeRange(String playerAgeRange) {
+        this.playerAgeRange = playerAgeRange;
     }
 
     public byte[] getImage() {
@@ -103,6 +110,14 @@ public class Game {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public LocalDate getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDate dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public List<Alternate> getAlternates() {
@@ -136,9 +151,10 @@ public class Game {
                 ", category='" + category + '\'' +
                 ", objective='" + objective + '\'' +
                 ", rules='" + rules + '\'' +
-                ", number_of_players='" + number_of_players + '\'' +
-                ", player_age_range='" + player_age_range + '\'' +
+                ", numberOfPlayers='" + numberOfPlayers + '\'' +
+                ", playerAgeRange='" + playerAgeRange + '\'' +
                 ", image=" + Arrays.toString(image) +
+                ", dateCreated=" + dateCreated +
                 ", alternates=" + alternates +
                 '}';
     }
