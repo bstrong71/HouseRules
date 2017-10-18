@@ -13,7 +13,7 @@ public class Alternate {
     private int id;
 
     @JsonIgnore
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "game_id")
     private Game game;
 

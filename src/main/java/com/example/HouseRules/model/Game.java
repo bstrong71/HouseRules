@@ -34,6 +34,7 @@ public class Game {
     @Column
     private byte[] image;
 
+    @OneToMany(mappedBy = "game")
     private List<Alternate> alternates = new ArrayList<>();
 
 
@@ -104,7 +105,6 @@ public class Game {
         this.image = image;
     }
 
-    @OneToMany(mappedBy = "game")
     public List<Alternate> getAlternates() {
         return alternates;
     }

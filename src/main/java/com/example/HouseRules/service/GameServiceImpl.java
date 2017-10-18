@@ -1,6 +1,8 @@
 package com.example.HouseRules.service;
 
+import com.example.HouseRules.model.Alternate;
 import com.example.HouseRules.model.Game;
+import com.example.HouseRules.repository.AlternateRepository;
 import com.example.HouseRules.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class GameServiceImpl implements GameService {
 
     @Autowired
     GameRepository gameRepository;
+
+    @Autowired
+    AlternateRepository alternateRepository;
 
     @Transactional
     @Override
@@ -58,4 +63,13 @@ public class GameServiceImpl implements GameService {
         return "Deleted game " + id + " successfully";
     }
 
+    @Transactional
+    @Override
+    public Game addAlternate(Alternate alternate) {
+        alternateRepository.save(alternate);
+        Game game = gameRepository.findOne(alternate.getGame().getId());
+        game.getAlternates().add(alternate);
+        gameRepository.save(game);
+        return game;
+    }
 }
