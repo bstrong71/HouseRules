@@ -83,20 +83,20 @@ public class GameController {
         return "Alternate game added";
     }
 
-    /**
-     * Update Alternate Rules
-     */
-    @PutMapping(path = "/api/game/{id}/alternate/{id}")
-    public String updateAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
-        Alternate alternate = objectMapper.readValue(json, Alternate.class);
-        alternate.setId(id);
-        return "Alternate rules " + id + " have been updated";
-    }
+//    /**
+//     * Update Alternate Rules
+//     */
+//    @PutMapping(path = "/api/game/{id}/alternate/{id}")
+//    public String updateAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
+//        Alternate alternate = objectMapper.readValue(json, Alternate.class);
+//        alternate.setId(id);
+//        return "Alternate rules " + id + " have been updated";
+//    }
 
     /**
      * Delete Alternate Rules
      */
-    @DeleteMapping(path = "/api/game/{id}/alternate/{alternateId}")
+    @DeleteMapping(path = "/api/game/{id}/alternate/{alternateId}/delete")
     public void deleteAlternate(@PathVariable("id") Integer id,
                                   @PathVariable("alternateId") Integer alternateId) {
         gameService.deleteAlternate(id, alternateId);
