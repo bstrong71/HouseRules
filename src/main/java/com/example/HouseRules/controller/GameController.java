@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.List;
 
 
-
 @RestController
 public class GameController {
 
@@ -82,16 +81,6 @@ public class GameController {
         gameService.addAlternate(alternate);
         return "Alternate game added";
     }
-
-//    /**
-//     * Update Alternate Rules
-//     */
-//    @PutMapping(path = "/api/game/{id}/alternate/{id}")
-//    public String updateAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
-//        Alternate alternate = objectMapper.readValue(json, Alternate.class);
-//        alternate.setId(id);
-//        return "Alternate rules " + id + " have been updated";
-//    }
 
     /**
      * Delete Alternate Rules
