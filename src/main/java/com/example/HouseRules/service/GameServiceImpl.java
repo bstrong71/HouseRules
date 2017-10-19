@@ -59,9 +59,9 @@ public class GameServiceImpl implements GameService {
 
     @Transactional
     @Override
-    public String delete(int id) {
+    public void delete(int id) {
         gameRepository.delete(id);
-        return "Deleted game " + id + " successfully";
+//        return "Deleted game " + id + " successfully";
     }
 
     @Transactional
@@ -70,6 +70,17 @@ public class GameServiceImpl implements GameService {
         alternateRepository.save(alternate);
         Game game = gameRepository.findOne(alternate.getGame().getId());
         game.getAlternates().add(alternate);
+        gameRepository.save(game);
+        return game;
+    }
+
+    @Transactional
+    @Override
+    public Game deleteAlternate(int gameId, int alternateId) {
+        Alternate alternate = alternateRepository.findOne(alternateId);
+        alternateRepository.delete(alternateId);
+        Game game = gameRepository.findOne(gameId);
+        game.getAlternates().remove(alternate);
         gameRepository.save(game);
         return game;
     }

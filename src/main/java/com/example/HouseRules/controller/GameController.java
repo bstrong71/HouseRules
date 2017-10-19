@@ -1,11 +1,8 @@
 package com.example.HouseRules.controller;
 
-
 import com.example.HouseRules.model.Alternate;
 import com.example.HouseRules.model.Game;
-
 import com.example.HouseRules.service.GameService;
-import com.example.HouseRules.model.Game;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +35,6 @@ public class GameController {
         return "New game has been added";
     }
 
-
     /**
      * Update Game
      */
@@ -70,13 +66,13 @@ public class GameController {
      * Delete Game
      */
     @DeleteMapping(path = "/api/game/{id}/delete")
-    public String deleteGame(@PathVariable("id") Integer id) {
+    public void deleteGame(@PathVariable("id") Integer id) {
         gameService.delete(id);
-        return "Deleted game " + id + " successfully";
+//        return "Deleted game " + id + " successfully";
     }
 
     /**
-     * Add Alternate Game
+     * Add Alternate Rules
      */
     @PostMapping(path = "/api/game/{id}/alternate")
     public String addAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
@@ -85,6 +81,25 @@ public class GameController {
         alternate.setGame(game);
         gameService.addAlternate(alternate);
         return "Alternate game added";
+    }
+
+    /**
+     * Update Alternate Rules
+     */
+    @PutMapping(path = "/api/game/{id}/alternate/{id}")
+    public String updateAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
+        Alternate alternate = objectMapper.readValue(json, Alternate.class);
+        alternate.setId(id);
+        return "Alternate rules " + id + " have been updated";
+    }
+
+    /**
+     * Delete Alternate Rules
+     */
+    @DeleteMapping(path = "/api/game/{id}/alternate/{alternateId}")
+    public void deleteAlternate(@PathVariable("id") Integer id,
+                                  @PathVariable("alternateId") Integer alternateId) {
+        gameService.deleteAlternate(id, alternateId);
     }
 
     /**

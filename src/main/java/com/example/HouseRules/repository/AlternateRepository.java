@@ -1,7 +1,7 @@
 package com.example.HouseRules.repository;
 
 import com.example.HouseRules.model.Alternate;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AlternateRepository extends CrudRepository<Alternate, Integer>{
+public interface AlternateRepository extends JpaRepository<Alternate, Integer> {
 }
