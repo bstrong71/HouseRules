@@ -2,6 +2,8 @@ package com.example.HouseRules.controller;
 
 import com.example.HouseRules.service.UserService;
 import com.example.HouseRules.model.User;
+import com.example.HouseRules.model.LoginRequest;
+import com.example.HouseRules.repository.UserRepository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ import org.springframework.ui.Model;
 public class UserController {
     @Autowired
     private UserService  userService;
+
+    @Autowired
+    UserRepository userRepository;
 
 
     private ObjectMapper UserobjectMapper = new ObjectMapper();
@@ -61,9 +66,25 @@ public class UserController {
         return "Deleted " + id ;
     }
 
-    @GetMapping("/login")
-    String login() {
-        return "login";
+    @PostMapping ("/login")
+    String login(@RequestBody LoginRequest request) throws IOException {
+       // LoginRequest  login = UserobjectMapper.readValue(request, LoginRequest.class);
+        String userPassword = request.getPassword();
+        String userName = request.getUsername();
+        User userNameauth = userRepository.getByUsername(userName);
+        User userPasswordauth = userRepository.getByPassword(userPassword);
+
+
+        if(userNameauth!=null&&userPasswordauth!=null){
+            return "/api/games";
+
+
+        }else {
+            return "/";
+
+
+
+        }
     }
 
     @RequestMapping("/loggedout")
