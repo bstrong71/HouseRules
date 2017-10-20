@@ -35,6 +35,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findOne(id);
     }
 
+
+
+
+
     @Transactional
     @Override
     public List<User> getAll() {

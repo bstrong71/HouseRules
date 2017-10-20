@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -61,7 +62,10 @@ public class GameController {
      * Get All Games
      */
     @GetMapping(path = "/api/games")
-    public List<Game> getAllGames() {
+
+    public List<Game> getAllGames(HttpSession session) {
+        System.out.println("session: " + session);
+        System.out.println("ACTIVATED");
         return gameService.getAll();
     }
 

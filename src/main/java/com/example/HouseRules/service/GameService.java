@@ -14,7 +14,9 @@ public interface GameService {
     void update(Game game);
     void delete(int id);
 
+
     Game addAlternate(Alternate alternate);
     Game deleteAlternate(int gameId, int alternateId);
 
 }
+
