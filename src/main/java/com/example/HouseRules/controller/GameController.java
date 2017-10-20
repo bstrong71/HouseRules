@@ -1,11 +1,12 @@
 package com.example.HouseRules.controller;
 
-
 import com.example.HouseRules.model.Alternate;
 import com.example.HouseRules.model.Game;
+<<<<<<< HEAD
 //import.com.example.HouseRules.service.AlternateService;
+=======
+>>>>>>> dd37b3bbaad53587f44ca9c97e84e803c36e2fa7
 import com.example.HouseRules.service.GameService;
-import com.example.HouseRules.model.Game;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-
 
 
 @RestController
@@ -38,7 +38,6 @@ public class GameController {
         gameService.add(game);
         return "New game has been added";
     }
-
 
     /**
      * Update Game
@@ -74,13 +73,13 @@ public class GameController {
      * Delete Game
      */
     @DeleteMapping(path = "/api/game/{id}/delete")
-    public String deleteGame(@PathVariable("id") Integer id) {
+    public void deleteGame(@PathVariable("id") Integer id) {
         gameService.delete(id);
-        return "Deleted game " + id + " successfully";
+//        return "Deleted game " + id + " successfully";
     }
 
     /**
-     * Add Alternate Game
+     * Add Alternate Rules
      */
     @PostMapping(path = "/api/game/{id}/alternate")
     public String addAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
@@ -89,6 +88,15 @@ public class GameController {
         alternate.setGame(game);
         gameService.addAlternate(alternate);
         return "Alternate game added";
+    }
+
+    /**
+     * Delete Alternate Rules
+     */
+    @DeleteMapping(path = "/api/game/{id}/alternate/{alternateId}/delete")
+    public void deleteAlternate(@PathVariable("id") Integer id,
+                                  @PathVariable("alternateId") Integer alternateId) {
+        gameService.deleteAlternate(id, alternateId);
     }
 
     /**
