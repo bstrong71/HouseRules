@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
+@CrossOrigin(origins = "https://house-rules-jgwrbs.herokuapp.com", maxAge = 3600)
 @RestController
 public class UserController {
     @Autowired
