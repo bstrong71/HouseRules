@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@CrossOrigin(origins = "https://house-rules-jgwrbs.herokuapp.com", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public class GameController {
 
