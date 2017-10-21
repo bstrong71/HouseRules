@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@CrossOrigin(origins = "https://house-rules-jgwrbs.herokuapp.com")
+
 @RestController
 public class GameController {
 

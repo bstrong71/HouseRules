@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
-@CrossOrigin(origins = "https://house-rules-jgwrbs.herokuapp.com")
+
 @RestController
 public class UserController {
     @Autowired
