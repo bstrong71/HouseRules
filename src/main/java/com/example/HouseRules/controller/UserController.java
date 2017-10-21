@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin
 @RestController
 public class UserController {
     @Autowired
