@@ -1,14 +1,20 @@
 package com.example.HouseRules.controller;
 
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-            .allowedMethods("PUT", "GET", "DELETE", "POST")
-            .allowedOrigins("http://localhost:3000");
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new CorsInterceptor());
+
     }
+
+
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**");
+//
+//    }
 }
