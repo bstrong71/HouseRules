@@ -59,7 +59,7 @@ public class UserController {
     public List<User> getAllUsers() {
         return userService.getAll();
     }
-    
+
     @DeleteMapping(path = "/api/user/{id}/delete")
     public String deleteUser(@PathVariable("id") Integer id) {
         userService.delete(id);
