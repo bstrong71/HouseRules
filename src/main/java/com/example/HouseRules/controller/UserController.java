@@ -37,10 +37,8 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
-    //SessionManager sessionManager;
 
     //SessionManager sessionManager = new SessionManager();
-
 
     private ObjectMapper UserobjectMapper = new ObjectMapper();
 
@@ -51,11 +49,11 @@ public class UserController {
         userService.add(user);
         return "HIT";
     }
+
     @GetMapping (path = "/TEST")
     public String test(){
         return "TESTING";
     }
-
 
     @PutMapping(path = "/api/user/{id}")
     public String updateGame(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
@@ -65,18 +63,15 @@ public class UserController {
         return "Ok";
     }
 
-
     @GetMapping(path = "/api/user/{id}")
     public User getOneUser(@PathVariable("id") Integer id) {
         return userService.getById(id);
     }
 
-
     @GetMapping(path = "/api/userList")
     public List<User> getAllUsers() {
         return userService.getAll();
     }
-
 
     @DeleteMapping(path = "/api/user/{id}/delete")
     public String deleteUser(@PathVariable("id") Integer id) {
@@ -91,8 +86,6 @@ public class UserController {
         String userName = request.getUsername();
         User userNameauth = userRepository.getByUsername(userName);
         User userPasswordauth = userRepository.getByPassword(userPassword);
-
-
 
         if(userNameauth!=null&&userPasswordauth!=null){
 
@@ -114,21 +107,20 @@ public class UserController {
             }else{
                 return null;
             }
-
-
-
         }else {
+
             return null;
 
 
+
+
+            return null;
 
         }
     }
 
     @RequestMapping("/loggedout")
     String logout(Model model) {
-
-
         return "Home-Page";
     }
 
