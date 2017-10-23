@@ -2,10 +2,7 @@ package com.example.HouseRules.controller;
 
 import com.example.HouseRules.model.Alternate;
 import com.example.HouseRules.model.Game;
-<<<<<<< HEAD
-//import.com.example.HouseRules.service.AlternateService;
-=======
->>>>>>> dd37b3bbaad53587f44ca9c97e84e803c36e2fa7
+
 import com.example.HouseRules.service.GameService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

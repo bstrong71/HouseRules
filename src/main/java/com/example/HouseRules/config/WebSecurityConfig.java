@@ -1,5 +1,5 @@
 //package com.example.HouseRules.config;
-<<<<<<< HEAD
+
 //import org.springframework.beans.factory.annotation.Autowired;
 //
 //import com.example.HouseRules.repository.UserRepository;
@@ -68,7 +68,7 @@
 //    }
 //}
 
-=======
+
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Configuration;
@@ -114,4 +114,4 @@
 //    }
 //
 //}
->>>>>>> dd37b3bbaad53587f44ca9c97e84e803c36e2fa7
+

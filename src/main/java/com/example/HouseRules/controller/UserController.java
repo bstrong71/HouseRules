@@ -3,6 +3,7 @@ package com.example.HouseRules.controller;
 import com.example.HouseRules.service.UserService;
 import com.example.HouseRules.model.User;
 import com.example.HouseRules.model.LoginRequest;
+import com.example.HouseRules.model.SessionManager;
 import com.example.HouseRules.repository.UserRepository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,6 +23,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+    //SessionManager sessionManager;
+
+    SessionManager sessionManager = new SessionManager();
 
 
     private ObjectMapper UserobjectMapper = new ObjectMapper();
@@ -67,7 +71,7 @@ public class UserController {
     }
 
     @PostMapping ("/login")
-    String login(@RequestBody LoginRequest request) throws IOException {
+    Integer login(@RequestBody LoginRequest request) throws IOException {
        // LoginRequest  login = UserobjectMapper.readValue(request, LoginRequest.class);
         String userPassword = request.getPassword();
         String userName = request.getUsername();
@@ -75,12 +79,25 @@ public class UserController {
         User userPasswordauth = userRepository.getByPassword(userPassword);
 
 
+
         if(userNameauth!=null&&userPasswordauth!=null){
-            return "/api/games";
+
+            Integer nId = userNameauth.getId();
+            Integer pId = userPasswordauth.getId();
+            if(nId==pId) {
+                System.out.println("ID FOR NAME"+ nId);
+                System.out.println("ID FOR PASSWORD"+ pId);
+                Integer sessionId = sessionManager.createSession(nId);
+                System.out.println(sessionId);
+                return sessionId;
+            }else{
+                return -1;
+            }
+
 
 
         }else {
-            return "/";
+            return -1;
 
 
 
@@ -89,6 +106,7 @@ public class UserController {
 
     @RequestMapping("/loggedout")
     String logout(Model model) {
+
 
         return "Home-Page";
     }
