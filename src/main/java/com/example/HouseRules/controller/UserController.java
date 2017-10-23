@@ -19,13 +19,26 @@ import org.springframework.ui.Model;
 
 @RestController
 public class UserController {
+    public class SessionInfo {
+        public String user;
+        public int sessionId;
+        public SessionInfo() {
+
+        }
+        public void setUserId(String user) {
+            this.user =  user;
+        }
+        public void setSessionId(int sessionId) {
+            this.sessionId = sessionId;
+        }
+    }
     @Autowired
     private UserService  userService;
 
     @Autowired
     UserRepository userRepository;
 
-    SessionManager sessionManager = new SessionManager();
+    //SessionManager sessionManager = new SessionManager();
 
     private ObjectMapper UserobjectMapper = new ObjectMapper();
 
@@ -67,7 +80,7 @@ public class UserController {
     }
 
     @PostMapping ("/login")
-    Integer login(@RequestBody LoginRequest request) throws IOException {
+    SessionInfo login(@RequestBody LoginRequest request) throws IOException {
        // LoginRequest  login = UserobjectMapper.readValue(request, LoginRequest.class);
         String userPassword = request.getPassword();
         String userName = request.getUsername();
@@ -81,14 +94,28 @@ public class UserController {
             if(nId==pId) {
                 System.out.println("ID FOR NAME"+ nId);
                 System.out.println("ID FOR PASSWORD"+ pId);
-                Integer sessionId = sessionManager.createSession(nId);
+                Integer sessionId = SessionManager.global.createSession(nId);
                 System.out.println(sessionId);
-                return sessionId;
+                SessionManager.SessionInfo session = SessionManager.global.getValidSession(sessionId);
+                User user = userService.getById(session.userId);
+                System.out.println("USER: "+ user.getName());
+                SessionInfo info = new SessionInfo();
+                info.setSessionId(sessionId) ;
+                info.setUserId(user.getName());
+
+                return info;
             }else{
-                return -1;
+                return null;
             }
         }else {
-            return -1;
+
+            return null;
+
+
+
+
+            return null;
+
         }
     }
 

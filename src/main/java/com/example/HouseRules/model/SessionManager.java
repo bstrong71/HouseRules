@@ -57,4 +57,5 @@ public class SessionManager {
     public void setAllSessions(HashMap<Integer, SessionInfo> allSessions) {
         this.allSessions = allSessions;
     }
+
 }
