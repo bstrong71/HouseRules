@@ -3,6 +3,7 @@ package com.example.HouseRules.controller;
 import com.example.HouseRules.model.Alternate;
 import com.example.HouseRules.model.Game;
 
+import com.example.HouseRules.model.SessionManager;
 import com.example.HouseRules.service.AlternateService;
 
 import com.example.HouseRules.service.GameService;
@@ -26,6 +27,7 @@ public class GameController {
 
     @Autowired
     private AlternateService alternateService;
+
 
     /**
      * Convert JSON to Java
@@ -64,10 +66,12 @@ public class GameController {
     /**
      * Get All Games
      */
-    @GetMapping(path = "/api/games")
+    @GetMapping(path = "/api/gameList/{sessionId}")
 
-    public List<Game> getAllGames(HttpSession session) {
+    public List<Game> getAllGames(@PathVariable("sessionId") Integer sessionId) {
+        SessionManager.SessionInfo session = SessionManager.global.getValidSession(sessionId);
         System.out.println("session: " + session);
+        System.out.println("USERID: " + session.userId);
         System.out.println("ACTIVATED");
         return gameService.getAll();
     }
