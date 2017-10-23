@@ -3,6 +3,8 @@ package com.example.HouseRules.controller;
 import com.example.HouseRules.model.Alternate;
 import com.example.HouseRules.model.Game;
 
+import com.example.HouseRules.service.AlternateService;
+
 import com.example.HouseRules.service.GameService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +16,16 @@ import java.io.IOException;
 import java.util.List;
 
 
+
 @RestController
 public class GameController {
 
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    private AlternateService alternateService;
 
     /**
      * Convert JSON to Java
@@ -76,7 +82,7 @@ public class GameController {
     }
 
     /**
-     * Add Alternate Rules
+     * Add Alternate Rule
      */
     @PostMapping(path = "/api/game/{id}/alternate")
     public String addAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
@@ -88,7 +94,19 @@ public class GameController {
     }
 
     /**
-     * Delete Alternate Rules
+     * Update Alternate Rule
+     */
+    @PutMapping(path = "/api/game/{id}/alternate/{alternateId}")
+    public String updateAlternate(@PathVariable("id") Integer id,
+                                  @PathVariable("alternateId") Integer alternateId, @RequestBody String json) throws IOException {
+        Alternate alternate = objectMapper.readValue(json, Alternate.class);
+        alternate.setId(alternateId);
+        alternateService.update(alternate);
+        return "Alternate rules " + alternateId + " has been updated";
+    }
+
+    /**
+     * Delete Alternate Rule
      */
     @DeleteMapping(path = "/api/game/{id}/alternate/{alternateId}/delete")
     public void deleteAlternate(@PathVariable("id") Integer id,

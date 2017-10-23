@@ -26,6 +26,8 @@ public class Alternate {
     @Column(length = 5000)
     private String rules;
 
+    public Alternate() {
+    }
 
     public int getId() {
         return id;

@@ -2,6 +2,7 @@ package com.example.HouseRules.service;
 
 import com.example.HouseRules.model.User;
 import java.util.List;
+
 public interface UserService {
     User add(User user);
     void add(List<User> allUsers);

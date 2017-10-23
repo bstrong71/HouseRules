@@ -26,16 +26,16 @@ public class Game {
     @Column(length = 5000)
     private String rules;
 
-    @Column
+    @Column(name = "number_of_players")
     private String numberOfPlayers;
 
-    @Column
+    @Column(name = "player_age_range")
     private String playerAgeRange;
 
     @Column
     private byte[] image;
 
-    @Column
+    @Column(name = "date_created")
     private LocalDate dateCreated;
 
     @OneToMany(mappedBy = "game")
@@ -114,9 +114,17 @@ public class Game {
     public LocalDate getDateCreated() {
         return dateCreated;
     }
-    
+
+    public void setDateCreated(LocalDate dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     public List<Alternate> getAlternates() {
         return alternates;
+    }
+
+    public void setAlternates(List<Alternate> alternates) {
+        this.alternates = alternates;
     }
 
     @Override
