@@ -16,7 +16,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-
+/**
+ * GameController includes all endpoints
+ */
 
 @RestController
 public class GameController {
@@ -86,7 +88,6 @@ public class GameController {
     @DeleteMapping(path = "/api/game/{id}/delete")
     public void deleteGame(@PathVariable("id") Integer id) {
         gameService.delete(id);
-//        return "Deleted game " + id + " successfully";
     }
 
     /**
