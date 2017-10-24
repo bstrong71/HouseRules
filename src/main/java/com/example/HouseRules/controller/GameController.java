@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * GameController includes all endpoints
+ * GameController includes all endpoints for access to games and alternate rules
  */
 
 @RestController
