@@ -16,7 +16,9 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
-
+/**
+ * this is for accessing all endpoints dealing with users
+ */
 @RestController
 public class UserController {
     public class SessionInfo {
@@ -114,7 +116,7 @@ public class UserController {
 
 
 
-            return null;
+            //return null;
 
         }
     }
