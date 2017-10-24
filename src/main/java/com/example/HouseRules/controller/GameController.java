@@ -39,11 +39,15 @@ public class GameController {
     /**
      * Add Game
      */
-    @PostMapping(path = "/api/game/new")
-    public String addGame(@RequestBody String json) throws IOException {
-        Game game = objectMapper.readValue(json, Game.class);
-        gameService.add(game);
-        return "New game has been added";
+    @PostMapping(path = "/api/game/new/{sessionId}")
+    public String addGame(@RequestBody String json, @PathVariable ("sessionId") Integer sessionId) throws IOException {
+        if(SessionManager.global.sessionIsValid(sessionId)) {
+            Game game = objectMapper.readValue(json, Game.class);
+            gameService.add(game);
+            return "New game has been added";
+        }else{
+            return "SESSION EXPIRED";
+        }
     }
 
     /**
@@ -68,13 +72,13 @@ public class GameController {
     /**
      * Get All Games
      */
-    @GetMapping(path = "/api/gameList/{sessionId}")
+    @GetMapping(path = "/api/gameList")
 
-    public List<Game> getAllGames(@PathVariable("sessionId") Integer sessionId) {
-        SessionManager.SessionInfo session = SessionManager.global.getValidSession(sessionId);
-        System.out.println("session: " + session);
-        System.out.println("USERID: " + session.userId);
-        System.out.println("ACTIVATED");
+    public List<Game> getAllGames() {
+       // SessionManager.SessionInfo session = SessionManager.global.getValidSession(sessionId);
+//        System.out.println("session: " + session);
+//        System.out.println("USERID: " + session.userId);
+//        System.out.println("ACTIVATED");
         return gameService.getAll();
     }
 
