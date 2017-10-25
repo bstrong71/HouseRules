@@ -40,14 +40,10 @@ public class GameController {
      * Add Game
      */
     @PostMapping(path = "/api/game/new/{sessionId}")
-    public String addGame(@RequestBody String json, @PathVariable ("sessionId") Integer sessionId) throws IOException {
-        if(SessionManager.global.sessionIsValid(sessionId)) {
-            Game game = objectMapper.readValue(json, Game.class);
-            gameService.add(game);
-            return "New game has been added";
-        }else{
-            return "SESSION EXPIRED";
-        }
+    public String addGame(@RequestBody String json) throws IOException {
+        Game game = objectMapper.readValue(json, Game.class);
+        gameService.add(game);
+        return "New game has been added";
     }
 
     /**
