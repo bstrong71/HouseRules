@@ -17,7 +17,7 @@ import java.util.List;
 import org.springframework.ui.Model;
 
 /**
- * this is for accessing all endpoints dealing with users
+ * UserController includes all endpoints dealing with users
  */
 @RestController
 public class UserController {
