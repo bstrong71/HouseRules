@@ -39,7 +39,7 @@ public class GameController {
     /**
      * Add Game
      */
-    @PostMapping(path = "/api/game/new/{sessionId}")
+    @PostMapping(path = "/api/game/new")
     public String addGame(@RequestBody String json) throws IOException {
         Game game = objectMapper.readValue(json, Game.class);
         gameService.add(game);
