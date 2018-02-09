@@ -43,7 +43,7 @@ public class GameController {
     public String addGame(@RequestBody String json) throws IOException {
         Game game = objectMapper.readValue(json, Game.class);
         gameService.add(game);
-        return "New game has been added";
+        return game + " New game was created";
     }
 
     /**

@@ -27,5 +27,4 @@ public class GameUtils {
         return game;
     }
 
-
 }
