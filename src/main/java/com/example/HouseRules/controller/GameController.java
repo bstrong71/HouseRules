@@ -90,12 +90,12 @@ public class GameController {
      * Add Alternate Rule
      */
     @PostMapping(path = "/api/game/{id}/alternate")
-    public String addAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
+    public Alternate addAlternate(@PathVariable("id") Integer id, @RequestBody String json) throws IOException {
         Alternate alternate = objectMapper.readValue(json, Alternate.class);
         Game game = gameService.getById(id);
         alternate.setGame(game);
         gameService.addAlternate(alternate);
-        return "Alternate game added";
+        return alternate;
     }
 
     /**
